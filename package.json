@@ -1,0 +1,26 @@
+{
+  "name": "toporig-project-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "npm run build && playwright test",
+    "assets": "blender -b -noaudio --python scripts/convert_assets.py && node scripts/compress-assets.mjs"
+  },
+  "dependencies": {
+    "lucide": "^0.468.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.2.0",
+    "@gltf-transform/extensions": "^4.2.0",
+    "@gltf-transform/functions": "^4.2.0",
+    "@playwright/test": "^1.55.0",
+    "meshoptimizer": "^0.24.0",
+    "sharp": "^0.35.4",
+    "vite": "^7.1.0"
+  }
+}

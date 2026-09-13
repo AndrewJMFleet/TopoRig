@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f5f0" />
+  <meta name="description" content="TopoRig: Topology-Agnostic Facial Rigging via Multi-Source Supervision. Explore facial action units on interactive 3D characters." />
+  <meta property="og:title" content="TopoRig: Topology-Agnostic Facial Rigging via Multi-Source Supervision" />
+  <meta property="og:description" content="Topology-agnostic facial rigging through complementary mesh and image supervision. Explore the interactive blendshape visualization." />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <title>TopoRig · Topology-Agnostic Facial Rigging</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="TopoRig home"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2 29 9v14l-13 7L3 23V9L16 2Z M3 9l13 7 13-7M16 16v14M16 2v14M3 23l13-7 13 7" stroke="currentColor" stroke-width="1.4"/></svg>TopoRig<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#playground">Visualization</a><a href="#method">Method</a><a href="#results">Results</a></nav>
+    <a class="nav-paper" href="./paper.pdf" target="_blank" rel="noopener">Read the paper <i data-lucide="arrow-up-right"></i></a>
+  </header>
+  <main id="main">
+    <section class="hero" id="overview">
+      <div class="eyebrow"><span class="status-dot"></span> TOPOLOGY-AGNOSTIC FACIAL RIGGING</div>
+      <h1><span class="project-name">TopoRig</span><span class="paper-title">Topology-Agnostic Facial Rigging<br> via Multi-Source Supervision</span></h1>
+      <p class="hero-subtitle">A topology-preserving deformation model trained with complementary mesh and image supervision.</p>
+      <div class="hero-actions">
+        <a class="button dark" href="./paper.pdf" target="_blank" rel="noopener"><i data-lucide="file-text"></i> Paper <span class="small-mono">PDF</span></a>
+        <a class="button outline" href="https://github.com/TaatiTeam/TopoRig" target="_blank" rel="noopener"><i data-lucide="code"></i> Code</a>
+        <a class="button outline" href="https://huggingface.co/datasets/SoroushMehraban/TopoRig_Dataset" target="_blank" rel="noopener"><i data-lucide="database"></i> Dataset</a>
+        <a class="button outline" href="https://huggingface.co/spaces/SoroushMehraban/TopoRig" target="_blank" rel="noopener"><i data-lucide="play"></i> Demo</a>
+      </div>
+      <div class="authors"><span>Andrew Fleet<sup>1,4</sup></span><span>Soroush Mehraban<sup>2,3,4</sup></span><span>Vida Adeli<sup>2,3,4</sup></span><span>Cole Clifford<sup>2</sup></span><span>Babak Taati<sup>3,4</sup></span></div>
+      <p class="affiliations"><span><sup>1</sup> Queen’s University</span><span><sup>2</sup> Pickford AI</span><span><sup>3</sup> University of Toronto</span><span><sup>4</sup> Vector Institute</span></p>
+      <div class="hero-gallery" aria-label="Facial expressions on four supplied sample meshes">
+        <a href="#playground" class="portrait-card" data-hero-sample="sample_00033"><div class="portrait-label"><span>01 / EXPRESSION</span><i data-lucide="arrow-up-right"></i></div><img src="./assets/sample_00033.webp" alt="Textured 3D sample 00033 with an open jaw" width="600" height="600" fetchpriority="high"><div class="portrait-bottom"><span>Jaw open</span><span class="au-tag">AU26</span></div></a>
+        <a href="#playground" class="portrait-card" data-hero-sample="sample_00041"><div class="portrait-label"><span>02 / EXPRESSION</span><i data-lucide="arrow-up-right"></i></div><img src="./assets/sample_00041.webp" alt="Textured 3D sample 00041 with a left smile" width="600" height="600" fetchpriority="high"><div class="portrait-bottom"><span>Smile · left</span><span class="au-tag">AU45</span></div></a>
+        <a href="#playground" class="portrait-card" data-hero-sample="sample_00049"><div class="portrait-label"><span>03 / EXPRESSION</span><i data-lucide="arrow-up-right"></i></div><img src="./assets/sample_00049.webp" alt="Textured 3D sample 00049 with raised inner brows" width="600" height="600"><div class="portrait-bottom"><span>Inner brow up · right</span><span class="au-tag">AU03</span></div></a>
+        <a href="#playground" class="portrait-card" data-hero-sample="sample_00250"><div class="portrait-label"><span>04 / EXPRESSION</span><i data-lucide="arrow-up-right"></i></div><img src="./assets/sample_00250.webp" alt="Textured 3D sample 00250 with a left nose sneer" width="600" height="600"><div class="portrait-bottom"><span>Nose sneer · left</span><span class="au-tag">AU51</span></div></a>
+      </div>
+      <div class="gallery-caption"><span><span class="status-dot"></span> AU-conditioned deformations on four sample identities.</span><span>Input mesh connectivity is preserved.</span></div>
+    </section>
+
+    <section class="intro section-wrap">
+      <div><p class="eyebrow">OVERVIEW</p><h2>Topology-preserving<br>facial deformation</h2></div>
+      <div class="intro-copy"><p>Automatic facial rigging across heterogeneous mesh topologies is limited by template-dependent supervision and errors introduced during deformation transfer.</p><p>TopoRig predicts action-unit-conditioned displacements directly on the input vertices. The model combines common-topology rigs, transferred custom-topology rigs, and targeted image-based cues to generalize to unseen identities while preserving input connectivity and UVs.</p></div>
+      <div class="stats"><div><strong>3,496</strong><span>generated identities in the corpus</span></div><div><strong>45</strong><span>non-gaze expression controls</span></div><div><strong>3</strong><span>complementary supervision sources</span></div><div><strong>1</strong><span>topology-preserving model</span></div></div>
+    </section>
+
+    <section class="playground-section section-wrap" id="playground">
+      <div class="section-heading"><div><p class="eyebrow"><span class="status-dot"></span> INTERACTIVE VISUALIZATION</p><h2>Action-unit visualization</h2></div><p>Select a sample and expression control.<br>Adjust its intensity to inspect the deformation.</p></div>
+      <div class="playground">
+        <div class="viewer-column">
+          <div class="viewport" id="viewport">
+            <div class="viewport-top"><span class="viewport-title"><span class="status-dot"></span> <span id="sample-title">SAMPLE 00033</span></span><div class="view-switch" role="group" aria-label="Surface display"><button class="active" data-mode="texture" aria-pressed="true">Texture</button><button data-mode="clay" aria-pressed="false">Clay</button><button data-mode="wireframe" aria-pressed="false">Wireframe</button></div></div>
+            <div id="canvas-host" role="img" aria-label="Interactive 3D facial mesh. Drag to orbit and scroll to zoom."></div>
+            <div class="viewer-loading" id="viewer-loading" role="status"><span class="loader-ring"></span><strong id="loading-label">Loading 3D face…</strong><span id="loading-detail">Preparing the sample and its blendshapes</span><button id="retry-load" class="button outline" hidden>Try again</button></div>
+            <div class="viewport-bottom"><span><i data-lucide="move"></i> Drag to orbit <span class="separator">/</span> Scroll to zoom</span><button class="icon-button" id="reset-camera" aria-label="Reset camera" title="Reset camera"><i data-lucide="scan"></i></button></div>
+          </div>
+          <div class="sample-strip" role="group" aria-label="Choose a character" id="sample-strip"></div>
+        </div>
+        <aside class="control-panel" aria-label="Expression controls">
+          <div class="panel-heading"><span class="eyebrow">EXPRESSION CONTROLS</span><span class="small-mono" id="control-count">43 facial controls</span></div>
+          <fieldset id="expression-controls" disabled>
+            <label class="field-label" for="control-group">01 <span>Facial region</span></label>
+            <div class="select-wrap"><select id="control-group"><option value="all">All facial regions</option><option value="brow">Brows</option><option value="eye">Eyes & eyelids</option><option value="cheek">Cheeks</option><option value="jaw">Jaw</option><option value="mouth">Mouth & lips</option><option value="nose">Nose</option></select><i data-lucide="chevron-down"></i></div>
+            <label class="field-label" for="action-unit">02 <span>Action unit</span></label>
+            <div class="select-wrap"><select id="action-unit"></select><i data-lucide="chevron-down"></i></div>
+            <p class="control-description" id="control-description">Lowers the jaw to open the mouth.</p>
+            <div class="intensity-heading"><label class="field-label" for="intensity">03 <span>Intensity</span></label><output id="intensity-value" for="intensity">0.65</output></div>
+            <input id="intensity" type="range" min="0" max="1" step="0.01" value="0.65" aria-label="Action unit intensity">
+            <div class="range-labels"><span>0.0 · Neutral</span><span>1.0 · Full expression</span></div>
+            <div class="playback-controls"><button class="button dark" id="play" aria-pressed="false"><i data-lucide="play"></i><span>Animate</span></button><button class="button outline" id="reset-expression"><i data-lucide="rotate-ccw"></i> Reset</button></div>
+            <button id="hold-neutral" class="compare-button">Hold to compare with neutral <i data-lucide="columns-2"></i></button>
+          </fieldset>
+          <div class="mesh-info"><span class="status-dot"></span><span>Topology-preserving interpolation</span><span id="mesh-count">Loading mesh details</span></div>
+          <p class="demo-note">This viewer interpolates the supplied blendshapes. It does not run the TopoRig network. AU numbers follow the paper’s ICT FaceKit vocabulary; L/R refer to the character’s left/right. This visualization excludes the two eye-wide controls; the paper uses 45 non-gaze controls.</p>
+        </aside>
+      </div>
+      <div class="gaze-panel" aria-label="Separate eyeball movement controls">
+        <div class="gaze-heading"><h3>Eyeball movement</h3><p>Separate gaze blendshapes from the sample assets.<br>These controls are not labeled as facial action units.</p></div>
+        <fieldset id="gaze-controls" disabled>
+          <div><label class="field-label" for="gaze-control"><span>Gaze direction and eye</span></label><div class="select-wrap"><select id="gaze-control" aria-label="Gaze direction and eye"></select><i data-lucide="chevron-down"></i></div></div>
+          <div><div class="intensity-heading"><label class="field-label" for="gaze-intensity"><span>Gaze intensity</span></label><output id="gaze-value" for="gaze-intensity">0.00</output></div><input id="gaze-intensity" type="range" min="0" max="1" step="0.01" value="0" aria-label="Gaze intensity"><div class="range-labels"><span>0.0 · Neutral</span><span>1.0 · Full movement</span></div></div>
+          <button class="button outline" id="reset-gaze">Reset gaze</button>
+        </fieldset>
+      </div>
+      <div class="playground-footnote"><i data-lucide="mouse-pointer-2"></i><span>Facial controls are shown individually. Eyeball movement has independent controls.</span><a href="./paper.pdf#page=4" target="_blank" rel="noopener">About the controls <i data-lucide="arrow-up-right"></i></a></div>
+    </section>
+
+    <section class="method-section section-wrap" id="method">
+      <div class="section-heading"><div><p class="eyebrow">THE METHOD</p><h2>Multi-source supervision</h2></div><p>Joint training with common-topology targets,<br>custom-topology targets, and image-based cues.</p></div>
+      <div class="source-cards">
+        <article><div class="source-top"><span class="small-mono">01 / CONSISTENCY</span><i data-lucide="layers-3"></i></div><h3>Common-topology rigs</h3><p>Fitted ICT FaceKit rigs provide accurate, consistent expression targets on a shared topology.</p><span class="source-tradeoff">Reliable expressions · template-biased geometry</span></article>
+        <article><div class="source-top"><span class="small-mono">02 / DIVERSITY</span><i data-lucide="network"></i></div><h3>Custom-topology rigs</h3><p>Transferred expressions retain each generated character’s geometry and introduce varied mesh connectivity.</p><span class="source-tradeoff">Diverse topology · noisier transferred targets</span></article>
+        <article><div class="source-top"><span class="small-mono">03 / REFINEMENT</span><i data-lucide="scan-eye"></i></div><h3>Image-guided cues</h3><p>Targeted image supervision refines eight eye-region controls where transferred 3D targets are less reliable.</p><span class="source-tradeoff">Localized cues · stronger eyelid closure</span></article>
+      </div>
+      <div class="architecture"><div class="figure-header"><h3>Conditional deformation network</h3><span class="small-mono">THE TOPORIG ARCHITECTURE</span></div><a href="./assets/architecture.webp" target="_blank" aria-label="Open full-resolution TopoRig architecture figure"><img src="./assets/architecture.webp" alt="TopoRig network architecture: geometric and landmark features enter vertex and global mesh encoders; action-unit controls condition surface blocks that predict per-vertex displacements." width="1456" height="593" loading="lazy"></a><div class="figure-caption"><span>Figure 2 from the paper.</span><p>Local surface geometry, landmark-relative features, global shape context, and AU controls predict a displacement for every input vertex.</p><span class="formula">V<sub>expressed</sub> = V<sub>neutral</sub> + ΔV</span></div></div>
+    </section>
+
+    <section class="results-section section-wrap" id="results">
+      <div class="section-heading"><div><p class="eyebrow">THE RESULTS</p><h2>Evaluation results</h2></div><p>Evaluated on 350 held-out identities,<br>across shared and unseen mesh topologies.</p></div>
+      <div class="results-grid"><div class="result-highlight"><span class="small-mono">PIXAL3D-100K · TRANSFER FIDELITY</span><strong>78.5<span>%</span></strong><h3>lower mean absolute error</h3><p>Relative to the strongest evaluated baseline on identity-specific topologies.</p><span class="highlight-bottom">0.274 mm MAE <i data-lucide="arrow-down-right"></i></span></div><div class="table-card"><div class="figure-header"><h3>Deformation error</h3><span class="small-mono">LOWER IS BETTER ↓</span></div><div class="table-scroll"><table><caption class="sr-only">Deformation error in millimeters, reproduced from Table 1 of the paper.</caption><thead><tr><th rowspan="2" scope="col">Method</th><th colspan="2" scope="colgroup">ICT</th><th colspan="2" scope="colgroup">Pixal3D-100k</th></tr><tr><th scope="col">MAE ↓</th><th scope="col">Q95 ↓</th><th scope="col">MAE ↓</th><th scope="col">Q95 ↓</th></tr></thead><tbody><tr><th scope="row">NFS</th><td>1.476</td><td>4.358</td><td>1.416</td><td>4.260</td></tr><tr><th scope="row">NFR</th><td>1.928</td><td>5.480</td><td>1.273</td><td>4.145</td></tr><tr class="ours"><th scope="row">TopoRig <span>Ours</span></th><td>0.400</td><td>1.257</td><td>0.274</td><td>0.975</td></tr></tbody></table></div><p class="table-note">Errors in mm; heads normalized to 240 mm height. Table 1 in the paper.</p></div></div>
+      <p class="results-note">These errors measure agreement with reference expressions. Pixal3D references are automatically transferred rigs, so lower error measures transfer fidelity and topology generalization, rather than perceptual rig quality alone.</p>
+      <figure class="comparison-figure"><a href="./assets/comparison.webp" target="_blank" aria-label="Open the full-resolution baseline comparison"><img src="./assets/comparison.webp" width="1497" height="707" loading="lazy" alt="Jaw-opening results comparing TopoRig with NFR and NFS on the ICT template and two Pixal3D identities, with close-ups and error maps."></a><figcaption><span class="small-mono">QUALITATIVE COMPARISON</span><p>Jaw opening across the ICT template and two identity-specific topologies. TopoRig produces more consistent deformation than the evaluated baselines. Figure 4 from the paper.</p></figcaption></figure>
+    </section>
+
+    <section class="paper-section section-wrap" id="paper"><div><p class="eyebrow">PUBLICATION</p><h2>Paper and supplementary material</h2><p>Read the full method, evaluations, ablations,<br>and supplementary material in the paper.</p><a class="button dark" href="./paper.pdf" target="_blank" rel="noopener">Read the paper <i data-lucide="arrow-up-right"></i></a></div><div class="paper-details"><span class="small-mono">RESEARCH PAPER</span><h3>TopoRig: Topology-Agnostic Facial Rigging via Multi-Source Supervision</h3><p>Andrew Fleet, Soroush Mehraban, Vida Adeli,<br>Cole Clifford, and Babak Taati</p><div class="paper-links"><a href="./paper.pdf" download="TopoRig.pdf"><i data-lucide="download"></i> Download PDF</a><a href="#playground"><i data-lucide="box"></i> View the visualization</a></div></div></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="#">TopoRig<span class="wordmark-dot">.</span></a><span>Topology-Agnostic Facial Rigging via Multi-Source Supervision</span><a href="#">Back to top <i data-lucide="arrow-up"></i></a></footer>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TopoRig — Local preview</title>
+  <style>body{max-width:640px;margin:12vh auto;padding:24px;font:16px/1.7 system-ui,sans-serif;color:#292c27;background:#f6f5f0}h1{font-size:30px}code{background:#e7e9df;padding:3px 6px}a{color:#52662c}</style>
+</head>
+<body>
+  <h1>TopoRig</h1>
+  <p id="status">Opening the compiled project page…</p>
+  <p>If the site has not been built, run <code>npm ci</code> and <code>npm run build</code>, then reload this page.</p>
+  <p><a href="./dist/">Open the compiled site</a></p>
+  <noscript><p>Use the link above to open the site. JavaScript is required for the interactive viewer.</p></noscript>
+  <script>
+    const target = new URL('./dist/', location.href);
+    fetch(new URL('index.html', target), {method:'HEAD', cache:'no-store'})
+      .then(response => {
+        if (!response.ok) throw new Error('Build missing');
+        target.search = location.search;
+        target.hash = location.hash;
+        location.replace(target.href);
+      })
+      .catch(() => { document.getElementById('status').textContent = 'Build the static site before previewing it with Python.'; });
+  </script>
+</body>
+</html>
